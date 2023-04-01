@@ -12,7 +12,7 @@ android {
     defaultConfig {
         applicationId "personal.nfl.bluetoothbattery"
         minSdk 23
-        targetSdk 33
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
@@ -40,9 +40,11 @@ android {
 
 dependencies {
 //    implementation 'com.github.2017398956:abcpermission-plugin:1.7.2_3'
+    implementation 'com.github.tiann:FreeReflection:3.1.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 //    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0'
 //    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0'
 //    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.0'

@@ -19,7 +19,11 @@ const val ACTION_GATT_SERVICES_DISCOVERED = "com.example.bluetooth.le.ACTION_GAT
 const val ACTION_DATA_AVAILABLE = "com.example.bluetooth.le.ACTION_DATA_AVAILABLE"
 const val EXTRA_DATA = "com.example.bluetooth.le.EXTRA_DATA"
 val UUID_HEART_RATE_MEASUREMENT = UUID.fromString("SampleGattAttributes.HEART_RATE_MEASUREMENT")
-class BluetoothLeService(private var bluetoothGatt: BluetoothGatt?) : Service() {
+class BluetoothLeService() : Service() {
+    private var bluetoothGatt:BluetoothGatt? = null
+    constructor(bluetoothGatt: BluetoothGatt?) : this() {
+        this.bluetoothGatt = bluetoothGatt
+    }
 
     override fun onBind(intent: Intent): IBinder {
         return Binder()

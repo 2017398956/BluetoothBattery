@@ -11,13 +11,15 @@ import android.util.Log
 import android.widget.Toast
 import personal.nfl.bluetoothbattery.adapter.BLEDeviceListAdapter
 
-class BluetoothBroadcastReceiver(private val bluetoothAdapter: BLEDeviceListAdapter) :
-    BroadcastReceiver() {
+class BluetoothBroadcastReceiver() : BroadcastReceiver(){
     private val names: MutableList<String> = ArrayList()
+    private lateinit var bluetoothAdapter:BLEDeviceListAdapter
+    constructor(bluetoothAdapter: BLEDeviceListAdapter) : this() {
+        this.bluetoothAdapter = bluetoothAdapter
+    }
 
-    @SuppressLint("MissingPermission")
+    @SuppressLint("MissingPermission", "NotifyDataSetChanged")
     override fun onReceive(context: Context, intent: Intent) {
-        if (intent == null) return
         intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)?.let {
             Log.e("NFL", "getAddress: " + it.address + " name: " + it.name)
             if (!TextUtils.isEmpty(it.name)) {
@@ -32,5 +34,12 @@ class BluetoothBroadcastReceiver(private val bluetoothAdapter: BLEDeviceListAdap
                 Toast.makeText(context, "未发现可连接的蓝牙设备", Toast.LENGTH_SHORT).show()
             }
         }
+        if (TextUtils.equals(intent.action, "android.bluetooth.device.action.BATTERY_LEVEL_CHANGED")){
+            Log.e(TAG, "android.bluetooth.device.action.BATTERY_LEVEL_CHANGED:$intent")
+        }
+    }
+
+    companion object{
+        private const val TAG = "BluetoothBroadcastReceiver"
     }
 }

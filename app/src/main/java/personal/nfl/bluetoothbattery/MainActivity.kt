@@ -138,6 +138,7 @@ class MainActivity : AppCompatActivity() {
         intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)
         intentFilter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED)
         intentFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
+        intentFilter.addAction("android.bluetooth.device.action.BATTERY_LEVEL_CHANGED")
         registerReceiver(bluetoothBroadcastReceiver, intentFilter)
     }
 
@@ -173,7 +174,7 @@ class MainActivity : AppCompatActivity() {
         SCAN_METHOD_NONE,SCAN_METHOD_CLASSIC, SCAN_METHOD_BLE, SCAN_METHOD_BLE_NEW, SCAN_METHOD_BLE_CUSTOM
     }
 
-    private val scanMethod = SCAN_METHOD.SCAN_METHOD_BLE_NEW
+    private val scanMethod = SCAN_METHOD.SCAN_METHOD_CLASSIC
 
     @SuppressLint("MissingPermission")
     private fun scanBLEDevice() {
